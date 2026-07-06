@@ -1,15 +1,12 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { X } from "lucide-react";
+import { X, ChevronDown } from "lucide-react";
 import { services } from "../data/services";
 
-const links = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/#about" },
-  { label: "Contact", to: "/#contact" },
-];
-
 export default function MobileMenu({ onClose }) {
+  const [servicesOpen, setServicesOpen] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -34,40 +31,73 @@ export default function MobileMenu({ onClose }) {
         animate="show"
         variants={{ show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } }}
       >
-        {links.map((link) => (
-          <motion.a
-            key={link.label}
-            href={link.to}
-            onClick={onClose}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              show: { opacity: 1, y: 0 },
-            }}
-            className="hover:text-brand transition-colors"
-          >
-            {link.label}
-          </motion.a>
-        ))}
+        <motion.a
+          href="/"
+          onClick={onClose}
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="hover:text-brand transition-colors"
+        >
+          Home
+        </motion.a>
 
         <motion.div
           variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-          className="w-16 h-px bg-white/20"
-        />
-
-        {services.map((service) => (
-          <motion.div
-            key={service.slug}
-            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="flex flex-col items-center"
+        >
+          <button
+            onClick={() => setServicesOpen((v) => !v)}
+            className="flex items-center gap-2 hover:text-brand transition-colors"
           >
-            <Link
-              to={`/${service.slug}`}
-              onClick={onClose}
-              className="font-sans text-base not-italic text-white/60 hover:text-brand transition-colors"
-            >
-              {service.title}
-            </Link>
-          </motion.div>
-        ))}
+            Calibration Service
+            <ChevronDown
+              size={22}
+              strokeWidth={2.5}
+              className={`not-italic transition-transform ${servicesOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {servicesOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="flex flex-col items-center gap-4 pt-5">
+                  {services.map((service) => (
+                    <Link
+                      key={service.slug}
+                      to={`/${service.slug}`}
+                      onClick={onClose}
+                      className="font-sans text-base not-italic text-white/60 hover:text-brand transition-colors"
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        <motion.a
+          href="/#about"
+          onClick={onClose}
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="hover:text-brand transition-colors"
+        >
+          About
+        </motion.a>
+        <motion.a
+          href="/#contact"
+          onClick={onClose}
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="hover:text-brand transition-colors"
+        >
+          Contact
+        </motion.a>
       </motion.nav>
     </motion.div>
   );

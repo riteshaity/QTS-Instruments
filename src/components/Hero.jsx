@@ -30,20 +30,20 @@ const trustCards = [
 
 export default function Hero() {
   return (
-    <section id="home" className="bg-cream px-4 pb-8 pt-28 sm:px-6 sm:pb-12 lg:px-8">
+    <section id="home" className="bg-cream px-4 pb-6 pt-24 sm:px-6 sm:pb-12 sm:pt-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="bg-noise relative overflow-hidden rounded-[32px] bg-ink-950 shadow-card">
+        <div className="bg-noise relative overflow-hidden rounded-[28px] bg-ink-950 shadow-card sm:rounded-[32px]">
           <div className="absolute inset-0 bg-dot-pattern bg-dots opacity-[0.08]" />
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-brand/20 blur-3xl" />
           <div className="absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-brand/15 blur-3xl" />
 
-          <div className="relative grid gap-12 p-8 sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-10 lg:p-16">
-            <div>
+          <div className="relative grid gap-6 p-6 sm:gap-12 sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-10 lg:p-16">
+            <div className="text-center sm:text-left">
               <motion.span
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white/50"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.15em] text-white/50 sm:px-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 Calibration &middot; Validation &middot; Monitoring
               </motion.span>
@@ -52,20 +52,17 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-7 text-[2.25rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-[2.85rem] lg:text-[3.1rem]"
+                className="text-balance mt-4 text-[1.6rem] font-semibold leading-[1.2] tracking-tight text-white sm:mt-7 sm:text-[2.85rem] sm:leading-[1.1] lg:text-[3.1rem]"
               >
-                <span className="block">Calibration, Validation &amp;</span>
-                <span className="block">Temperature Monitoring</span>
-                <span className="mt-1 block font-display font-medium italic text-brand-light">
-                  made simple.
-                </span>
+                Calibration, Validation &amp; Temperature Monitoring{" "}
+                <span className="font-display font-medium italic text-brand-light">made simple.</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45, duration: 0.5 }}
-                className="mt-6 max-w-md text-base leading-relaxed text-white/50"
+                className="mt-3 max-w-md text-sm leading-relaxed text-white/50 sm:mt-6 sm:text-base"
               >
                 A Hyderabad-based, NABL accredited calibration laboratory serving customers
                 pan-India with precision temperature, humidity, and thermal mapping calibration.
@@ -75,7 +72,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55, duration: 0.5 }}
-                className="mt-7 flex flex-wrap gap-2.5"
+                className="mt-4 hidden flex-wrap gap-2.5 sm:mt-7 sm:flex"
               >
                 {metaPills.map(({ icon: Icon, label }) => (
                   <span
@@ -92,7 +89,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65, duration: 0.5 }}
-                className="mt-9 flex flex-wrap items-center gap-5"
+                className="mt-5 hidden flex-wrap items-center gap-3 sm:mt-9 sm:flex sm:gap-5"
               >
                 <a
                   href="#contact"
@@ -117,8 +114,8 @@ export default function Hero() {
               transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="relative"
             >
-              <div className="overflow-hidden rounded-3xl border border-white/10">
-                <img src={heroBg} alt="QTS Instruments calibration environment" className="h-64 w-full object-cover sm:h-80 lg:h-[420px]" />
+              <div className="overflow-hidden rounded-2xl border border-white/10 sm:rounded-3xl">
+                <img src={heroBg} alt="QTS Instruments calibration environment" className="h-40 w-full object-cover sm:h-80 lg:h-[420px]" />
               </div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -130,15 +127,30 @@ export default function Hero() {
                 <p className="mt-2 text-xs font-medium text-white/70">Live instrument calibration</p>
               </motion.div>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="flex justify-center sm:hidden"
+            >
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
+              >
+                Claim a Quote
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </a>
+            </motion.div>
           </div>
         </div>
 
-        <StaggerGroup className="mt-6 grid gap-4 sm:grid-cols-3">
+        <StaggerGroup className="mt-4 grid gap-3 sm:mt-6 sm:grid-cols-3 sm:gap-4">
           {trustCards.map((card) => (
             <StaggerItem key={card.title}>
               <motion.div
                 whileHover={{ y: -4 }}
-                className="flex h-full items-start gap-4 rounded-3xl border border-ink-950/5 bg-white p-6 shadow-soft"
+                className="flex h-full items-start gap-4 rounded-2xl border border-ink-950/5 bg-white p-5 shadow-soft sm:rounded-3xl sm:p-6"
               >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
                   <card.icon size={20} />
